@@ -6,14 +6,15 @@ import { HttpClient } from "@angular/common/http";
   styleUrls: ["./app.component.css"]
 })
 export class AppComponent implements OnInit {
-  array = [];
+  disasterData = [];
   title = "app";
   apiUrl = "https://tcgbusfs.blob.core.windows.net/blobfs/GetDisasterSummary.json";
   constructor(private http: HttpClient) {}
   ngOnInit() {
-    this.http.get<any[]>(this.apiUrl).subscribe(data => {
-      this.array = data;
-      console.log(data)
-    });
+    this.http.get<any[]>(this.apiUrl)
+    .subscribe(data => {
+      data = data.DataSet["diffgr:diffgram"].NewDataSet.CASE_SUMMARY;
+      this.disasterData = data;
+    })
   }
 }
