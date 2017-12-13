@@ -17,4 +17,13 @@ export class AppComponent implements OnInit {
       this.disasterData = data;
     })
   }
+  selectedObject:string = '';
+  countries = [
+    {name:"台北市"},
+    {name:"台中市"},
+    {name:"高雄市"}
+  ]
+  updateSelectedValue($event){
+    console.log($event)
+  }
 }
