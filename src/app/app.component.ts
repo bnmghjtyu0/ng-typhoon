@@ -19,11 +19,22 @@ export class AppComponent implements OnInit {
   }
   selectedObject:string = '';
   countries = [
-    {name:"台北市"},
-    {name:"台中市"},
-    {name:"高雄市"}
+    {name:"全部"},
+    {name:"萬華區"},
+    {name:"中正區"},
+    {name:"大同區"},
+    {name:"中山區"},
+    {name:"大安區"},
+    {name:"南港區"},
+    {name:"文山區"},
+    {name:"中正區"},
+    {name:"松山區"},
+    {name:"信義區"},
+    {name:"士林區"},
+    {name:"北投區"},
+    {name:"內湖區"}
   ]
   updateSelectedValue($event){
-    console.log($event)
+    console.log(this.disasterData)
   }
 }

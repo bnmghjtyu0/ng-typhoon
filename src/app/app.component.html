@@ -5,7 +5,8 @@
       <option value="" disabled>請選擇</option>
       <option *ngFor="let country of countries" [ngValue]="country">{{country.name}}</option>
     </select>
-<ul id="list"></ul>
+    <p>{{selectedObject | json}}</p>
+    <ul id="list"></ul>
     <table class="table table-striped mt-3">
       <thead>
         <tr>
