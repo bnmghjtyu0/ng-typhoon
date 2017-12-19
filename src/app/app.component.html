@@ -1,11 +1,10 @@
 <app-header></app-header>
 <div class="container">
   <div class="row">
-    <select name="" id="" class="form-control mt-5" [(ngModel)]="selectedObject" (ngModelChange)="updateSelectedValue($event)">
+    <select class="form-control mt-5" [(ngModel)]="sel" name="sel">
       <option value="" disabled>請選擇</option>
       <option *ngFor="let country of countries" [ngValue]="country">{{country.name}}</option>
     </select>
-    <p>{{selectedObject | json}}</p>
     <ul id="list"></ul>
     <table class="table table-striped mt-3">
       <thead>
@@ -17,7 +16,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of disasterData">
+        <tr *ngFor="let item of disasterData | select: sel">
           <td>{{item.CaseTime}}</td>
           <td>{{item.CaseLocationDistrict}}</td>
           <td>{{item.CaseLocationDescription}}</td>
