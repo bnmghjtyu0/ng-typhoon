@@ -1,42 +1,46 @@
 <app-header></app-header>
-<div class="container">
-    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-        <li class="nav-item">
-          <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">列表</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">地圖</a>
-        </li>
-      </ul>
-      <div class="tab-content" id="pills-tabContent">
-        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">列表內容</div>
-        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">地圖內容</div>
+<div class="container mt-5">
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
+    </li>
+  </ul>
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+      <div class="row">
+        <div class="col">
+            <select class="form-control mt-2" [(ngModel)]="sel" name="sel">
+                <option value="" disabled>請選擇</option>
+                <option *ngFor="let country of countries" [ngValue]="country">{{country.name}}</option>
+              </select>
+              <ul id="list"></ul>
+              <table class="table table-striped mt-3">
+                <thead>
+                  <tr>
+                    <th scope="col">時間</th>
+                    <th scope="col">區域</th>
+                    <th scope="col">詳細位置</th>
+                    <th scope="col">描述</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of disasterData | select: sel">
+                    <td>{{item.CaseTime}}</td>
+                    <td>{{item.CaseLocationDistrict}}</td>
+                    <td>{{item.CaseLocationDescription}}</td>
+                    <td>{{item.Name}}</td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
       </div>
-  <div class="row">
-    <select class="form-control mt-5" [(ngModel)]="sel" name="sel">
-      <option value="" disabled>請選擇</option>
-      <option *ngFor="let country of countries" [ngValue]="country">{{country.name}}</option>
-    </select>
-    <ul id="list"></ul>
-    <table class="table table-striped mt-3">
-      <thead>
-        <tr>
-          <th scope="col">時間</th>
-          <th scope="col">區域</th>
-          <th scope="col">詳細位置</th>
-          <th scope="col">描述</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let item of disasterData | select: sel">
-          <td>{{item.CaseTime}}</td>
-          <td>{{item.CaseLocationDistrict}}</td>
-          <td>{{item.CaseLocationDescription}}</td>
-          <td>{{item.Name}}</td>
-        </tr>
-      </tbody>
-    </table>
+    </div>
+    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">google map API</div>
   </div>
+
 </div>
 
 <router-outlet></router-outlet>
