@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { AgmCoreModule } from '@agm/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -23,7 +24,11 @@ import { SelectPipe } from './select.pipe';
     AppRoutingModule,
     NgbModule.forRoot(),
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBaXRfSzLMj5yhzOxOnKWYTZ00bVozr0vM',
+      language: 'zh-TW'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
