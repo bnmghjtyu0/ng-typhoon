@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
+import { MouseEvent } from "@agm/core";
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
@@ -9,7 +10,7 @@ export class AppComponent implements OnInit {
   disasterData = [];
   title = "app";
   apiUrl = "https://tcgbusfs.blob.core.windows.net/blobfs/GetDisasterSummary.json";
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
   ngOnInit() {
     this.http.get<any[]>(this.apiUrl).subscribe((data: any) => {
       data = data.DataSet["diffgr:diffgram"].NewDataSet.CASE_SUMMARY;
@@ -36,7 +37,39 @@ export class AppComponent implements OnInit {
     { name: "內湖區" }
   ];
   // googleMap
+
+  // 縮放比例
+  zoomValue: number = 8;
+  // 經度緯度
   lat: number = 24.1504536;
   lng: number = 120.68325279999999;
-  zoomValue: number = 15;
+
+  markers: marker[] = [
+    {
+      lat: 25.132415771484375,
+      lng: 121.50299835205078,
+      label: "鐘頭",
+      iconUrl: "https://cdn1.iconfinder.com/data/icons/orientation-2/32/location-128.png"
+    },
+    {
+      lat: 51.373858,
+      lng: 7.215982,
+      label: "B",
+      iconUrl: ""
+    },
+    {
+      lat: 51.723858,
+      lng: 7.895982,
+      label: "C",
+      iconUrl: ""
+    }
+  ];
+}
+
+// just an interface for type safety.
+interface marker {
+  lat: number;
+  lng: number;
+  label?: string;
+  iconUrl: string;
 }

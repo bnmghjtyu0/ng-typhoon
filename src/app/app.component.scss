@@ -1,11 +1,21 @@
+@import "~styles/variables";
 agm-map {
     height: 80vh;
 }
 
-.table-style {
+.title {
+    display: inline;
+    color: #333;
+    padding: 6px 6px 6px 12px;
+    border-left:4px solid nth($colors,1);
+}
+
+.TStyle-white {
+    background: #fff;
     thead {
         tr {
             th {
+                background: #444444;
                 color: #fff;
                 font-weight: normal;
             }
@@ -14,7 +24,7 @@ agm-map {
     tbody {
         tr {
             td {
-                color: #fff;
+                background: #fff;
                 font-weight: normal;
             }
         }

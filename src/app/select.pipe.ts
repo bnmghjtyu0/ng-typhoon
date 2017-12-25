@@ -6,8 +6,11 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class SelectPipe implements PipeTransform {
 
   transform(items: any, sel?: any): any {
-    console.log(sel)
-    return sel ? items.filter(sal => sal.CaseLocationDistrict === sel.name) : items;
+    if (sel.name == '全部') {
+      return items
+    } else {
+      return sel ? items.filter(sal => sal.CaseLocationDistrict === sel.name) : items;
+    }
   }
 
 }

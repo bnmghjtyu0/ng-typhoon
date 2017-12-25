@@ -1,6 +1,21 @@
+@import "~styles/variables";
 .navbar {
-  background:transparent !important;
-  .navbar-brand {
-    color:#fff;
-  }
+    background: transparent !important;
+    border-bottom: 1px solid nth($colors, 1);
+    .navbar-brand {
+        color: nth($colors, 1);
+    }
+    .navbar-collapse {
+        ul {
+            li {
+                a {
+                    color: nth($colors, 2);
+                    &:hover {
+                        background: nth($colors, 1);
+                        color: #fff;
+                    }
+                }
+            }
+        }
+    }
 }

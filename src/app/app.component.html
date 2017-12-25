@@ -1,13 +1,14 @@
 <app-header></app-header>
 <div class="container mt-5">
-  <div class="row">
-    <div class="col-6">
+  <h4 class="title">防災資訊查詢</h4>
+  <div class="row mt-5">
+    <div class="col-12 col-sm-6">
       <select class="form-control mt-2" [(ngModel)]="sel" name="sel">
         <option value="" disabled>請選擇</option>
         <option *ngFor="let country of countries" [ngValue]="country">{{country.name}}</option>
       </select>
       <ul id="list"></ul>
-      <table class="table table-style mt-3">
+      <table class="table TStyle-white mt-3">
         <thead>
           <tr>
             <th scope="col">時間</th>
@@ -19,20 +20,44 @@
         <tbody>
           <tr *ngFor="let item of disasterData | select: sel">
             <td>{{item.CaseTime}}</td>
-            <td><span class="badge badge-primary">{{item.CaseLocationDistrict}}</span></td>
+            <td>
+              <span class="badge badge-primary">{{item.CaseLocationDistrict}}</span>
+            </td>
             <td>{{item.CaseLocationDescription}}</td>
             <td>{{item.Name}}</td>
           </tr>
         </tbody>
       </table>
+      <ul *ngFor="let item of disasterData | select: sel">
+        <li>經度 {{item.Wgs84Y}}</li>
+        <li>緯度 {{item.Wgs84X}}</li>
+      </ul>
     </div>
-    <div class="col-6">
-      <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoomValue">
+
+    <div class="col-12 col-sm-6">
+      <agm-map
+      [latitude]="lat"
+      [longitude]="lng"
+      [zoom]="zoomValue">
+        <agm-marker
+        *ngFor="let m of markers"
+         [latitude]="m.lat"
+         [longitude]="m.lng"
+          [label]="m.label"
+          [iconUrl]="m.iconUrl">
+
+          <agm-info-window>
+            <strong>InfoWindow content</strong>
+          </agm-info-window>
+
+        </agm-marker>
+
+        <agm-circle [latitude]="lat + 0.3" [longitude]="lng" [radius]="5000" [fillColor]="'red'" [circleDraggable]="true" [editable]="true">
+        </agm-circle>
       </agm-map>
     </div>
   </div>
 </div>
-
 
 
 <router-outlet></router-outlet>
