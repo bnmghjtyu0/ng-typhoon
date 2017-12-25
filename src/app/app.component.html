@@ -35,29 +35,17 @@
     </div>
 
     <div class="col-12 col-sm-6">
-      <agm-map
-      [latitude]="lat"
-      [longitude]="lng"
-      [zoom]="zoomValue">
-        <agm-marker
-        *ngFor="let m of markers"
-         [latitude]="m.lat"
-         [longitude]="m.lng"
-          [label]="m.label"
-          [iconUrl]="m.iconUrl">
-
+      <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoomValue">
+        <agm-marker *ngFor="let m of markers" [latitude]="m.lat" [longitude]="m.lng" [label]="m.label" [iconUrl]="m.iconUrl">
           <agm-info-window>
             <strong>InfoWindow content</strong>
           </agm-info-window>
-
         </agm-marker>
-
         <agm-circle [latitude]="lat + 0.3" [longitude]="lng" [radius]="5000" [fillColor]="'red'" [circleDraggable]="true" [editable]="true">
         </agm-circle>
       </agm-map>
     </div>
   </div>
 </div>
-
 
 <router-outlet></router-outlet>

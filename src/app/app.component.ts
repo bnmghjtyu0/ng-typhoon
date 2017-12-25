@@ -44,32 +44,36 @@ export class AppComponent implements OnInit {
   lat: number = 24.1504536;
   lng: number = 120.68325279999999;
 
+  // just an interface for type safety.
+
+
   markers: marker[] = [
     {
       lat: 25.132415771484375,
       lng: 121.50299835205078,
-      label: "鐘頭",
+      label: "北投",
       iconUrl: "https://cdn1.iconfinder.com/data/icons/orientation-2/32/location-128.png"
     },
     {
       lat: 51.373858,
       lng: 7.215982,
       label: "B",
-      iconUrl: ""
+      iconUrl: "https://cdn1.iconfinder.com/data/icons/orientation-2/32/location-128.png"
     },
     {
       lat: 51.723858,
       lng: 7.895982,
       label: "C",
-      iconUrl: ""
+   iconUrl: "https://cdn1.iconfinder.com/data/icons/orientation-2/32/location-128.png"
     }
   ];
 }
-
-// just an interface for type safety.
 interface marker {
   lat: number;
   lng: number;
   label?: string;
   iconUrl: string;
 }
+
+
+
