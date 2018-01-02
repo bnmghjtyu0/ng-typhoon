@@ -3,7 +3,7 @@
   <h4 class="title">防災資訊查詢</h4>
   <div class="row mt-5">
     <div class="col-12 col-sm-6">
-      <select class="form-control mt-2" [(ngModel)]="sel" name="sel">
+      <select class="form-control mt-2" [(ngModel)]="sel" name="sel" (ngModelChange)="onChange($event)">
         <option value="" disabled>請選擇</option>
         <option *ngFor="let country of countries" [ngValue]="country">{{country.name}}</option>
       </select>
@@ -28,13 +28,15 @@
           </tr>
         </tbody>
       </table>
-      <ul *ngFor="let item of disasterData | select: sel">
-        <li>經度 {{item.Wgs84Y}}</li>
-        <li>緯度 {{item.Wgs84X}}</li>
-      </ul>
     </div>
-
     <div class="col-12 col-sm-6">
+      <!-- 測試用 onChange -->
+      <ul *ngFor="let item of markers">
+        <li>lat {{item.lat}}</li>
+        <li>lng {{item.lng}}</li>
+        <li>地區 {{item.label}}</li>
+        <li>iconUrl {{item.iconUrl}}</li>
+      </ul>
       <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoomValue">
         <agm-marker *ngFor="let m of markers" [latitude]="m.lat" [longitude]="m.lng" [label]="m.label" [iconUrl]="m.iconUrl">
           <agm-info-window>

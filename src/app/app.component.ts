@@ -39,34 +39,27 @@ export class AppComponent implements OnInit {
   // googleMap
 
   // 縮放比例
-  zoomValue: number = 8;
+  zoomValue: number = 6;
   // 經度緯度
   lat: number = 24.1504536;
   lng: number = 120.68325279999999;
 
   // just an interface for type safety.
 
-
-  markers: marker[] = [
-    {
-      lat: 25.132415771484375,
-      lng: 121.50299835205078,
-      label: "北投",
-      iconUrl: "https://cdn1.iconfinder.com/data/icons/orientation-2/32/location-128.png"
-    },
-    {
-      lat: 51.373858,
-      lng: 7.215982,
-      label: "B",
-      iconUrl: "https://cdn1.iconfinder.com/data/icons/orientation-2/32/location-128.png"
-    },
-    {
-      lat: 51.723858,
-      lng: 7.895982,
-      label: "C",
-   iconUrl: "https://cdn1.iconfinder.com/data/icons/orientation-2/32/location-128.png"
+  markers: marker[] = [];
+  onChange(target: HTMLInputElement) {
+    for (let i = 0, Len = this.disasterData.length; i < Len; i++) {
+      let obj = {
+        lat: parseFloat(this.disasterData[0].Wgs84Y),
+        lng: parseFloat(this.disasterData[0].Wgs84X),
+        label: this.disasterData[0].CaseLocationDistrict,
+        iconUrl:
+          "https://cdn1.iconfinder.com/data/icons/orientation-2/32/location-128.png"
+      };
+      this.markers.length = 0;
+      this.markers.push(obj);
     }
-  ];
+  }
 }
 interface marker {
   lat: number;
@@ -74,6 +67,3 @@ interface marker {
   label?: string;
   iconUrl: string;
 }
-
-
-
