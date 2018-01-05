@@ -48,16 +48,36 @@ export class AppComponent implements OnInit {
 
   markers: marker[] = [];
   onChange(target: HTMLInputElement) {
+    this.markers.length = 0;
     for (let i = 0, Len = this.disasterData.length; i < Len; i++) {
-      let obj = {
-        lat: parseFloat(this.disasterData[0].Wgs84Y),
-        lng: parseFloat(this.disasterData[0].Wgs84X),
-        label: this.disasterData[0].CaseLocationDistrict,
-        iconUrl:
-          "https://cdn1.iconfinder.com/data/icons/orientation-2/32/location-128.png"
-      };
-      this.markers.length = 0;
-      this.markers.push(obj);
+      console.log(this.disasterData[i]);
+      if (target.name == this.disasterData[i].CaseLocationDistrict) {
+        let obj = {
+          lat: parseFloat(this.disasterData[i].Wgs84Y),
+          lng: parseFloat(this.disasterData[i].Wgs84X),
+          label: this.disasterData[i].CaseLocationDistrict,
+          house: this.disasterData[i].CaseCommunicatorUnit,
+          description: this.disasterData[i].CaseDescription,
+          time: this.disasterData[i].CaseTime,
+          address: this.disasterData[i].CaseLocationDescription,
+          iconUrl:
+            "https://cdn1.iconfinder.com/data/icons/orientation-2/32/location-128.png"
+        };
+        this.markers.push(obj);
+      } else if (target.name == "全部") {
+        let obj = {
+          lat: parseFloat(this.disasterData[i].Wgs84Y),
+          lng: parseFloat(this.disasterData[i].Wgs84X),
+          label: this.disasterData[i].CaseLocationDistrict,
+          house: this.disasterData[i].CaseCommunicatorUnit,
+          description: this.disasterData[i].CaseDescription,
+          time: this.disasterData[i].CaseTime,
+          address: this.disasterData[i].CaseLocationDescription,
+          iconUrl:
+            "https://cdn1.iconfinder.com/data/icons/orientation-2/32/location-128.png"
+        };
+        this.markers.push(obj);
+      }
     }
   }
 }

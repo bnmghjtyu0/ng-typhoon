@@ -31,21 +31,46 @@
     </div>
     <div class="col-12 col-sm-6">
       <!-- 測試用 onChange -->
-      <ul *ngFor="let item of markers">
+      <!-- <ul *ngFor="let item of markers">
         <li>lat {{item.lat}}</li>
         <li>lng {{item.lng}}</li>
         <li>地區 {{item.label}}</li>
         <li>iconUrl {{item.iconUrl}}</li>
-      </ul>
-      <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoomValue">
-        <agm-marker *ngFor="let m of markers" [latitude]="m.lat" [longitude]="m.lng" [label]="m.label" [iconUrl]="m.iconUrl">
+      </ul> -->
+
+      <agm-map
+        [latitude]="lat"
+        [longitude]="lng"
+        [zoom]="zoomValue">
+        <!-- [iconUrl]="m.iconUrl" -->
+        <agm-marker
+            *ngFor="let m of markers"
+            [latitude]="m.lat"
+            [longitude]="m.lng"
+            >
+
           <agm-info-window>
-            <strong>InfoWindow content</strong>
+            <p>地區:{{m.label}}</p>
+            <p>地址:{{m.address}}</p>
+            <p>應變中心:{{m.house}}</p>
+            <p>描述:{{m.description}}</p>
+            <p>時間:{{m.time}}</p>
+
           </agm-info-window>
+
         </agm-marker>
-        <agm-circle [latitude]="lat + 0.3" [longitude]="lng" [radius]="5000" [fillColor]="'red'" [circleDraggable]="true" [editable]="true">
+
+        <agm-circle
+            [latitude]="lat + 0.3"
+            [longitude]="lng"
+            [radius]="5000"
+            [fillColor]="'red'"
+            [circleDraggable]="true"
+            [editable]="true">
         </agm-circle>
+
       </agm-map>
+
     </div>
   </div>
 </div>
