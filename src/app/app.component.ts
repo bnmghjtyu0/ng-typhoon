@@ -12,9 +12,10 @@ export class AppComponent implements OnInit {
   apiUrl = "https://tcgbusfs.blob.core.windows.net/blobfs/GetDisasterSummary.json";
   constructor(private http: HttpClient) {}
   ngOnInit() {
-    this.http.get<any[]>(this.apiUrl).subscribe((data: any) => {
+    this.http.get(this.apiUrl).subscribe((data: any) => {
       data = data.DataSet["diffgr:diffgram"].NewDataSet.CASE_SUMMARY;
-      this.disasterData = data;
+      this.disasterData.push(data)
+      console.log(data)
     });
   }
 
@@ -50,7 +51,7 @@ export class AppComponent implements OnInit {
   onChange(target: HTMLInputElement) {
     this.markers.length = 0;
     for (let i = 0, Len = this.disasterData.length; i < Len; i++) {
-      console.log(this.disasterData[i]);
+      // console.log(this.disasterData[i]);
       if (target.name == this.disasterData[i].CaseLocationDistrict) {
         let obj = {
           lat: parseFloat(this.disasterData[i].Wgs84Y),

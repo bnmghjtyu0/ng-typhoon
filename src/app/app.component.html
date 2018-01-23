@@ -1,6 +1,6 @@
 <app-header></app-header>
 <div class="container mt-5">
-  <h4 class="title">防災資訊查詢</h4>
+  <h4 class="title">Taipei 防災資訊查詢</h4>
   <div class="row mt-5">
     <div class="col-12 col-sm-6">
       <select class="form-control mt-2" [(ngModel)]="sel" name="sel" (ngModelChange)="onChange($event)">
@@ -8,6 +8,7 @@
         <option *ngFor="let country of countries" [ngValue]="country">{{country.name}}</option>
       </select>
       <ul id="list"></ul>
+      {{disasterData}}
       <table class="table TStyle-white mt-3">
         <thead>
           <tr>
