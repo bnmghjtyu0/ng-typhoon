@@ -8,7 +8,7 @@
         <option *ngFor="let country of countries" [ngValue]="country">{{country.name}}</option>
       </select>
       <ul id="list"></ul>
-      {{disasterData}}
+      <!-- {{disasterData[0][1]}} -->
       <table class="table TStyle-white mt-3">
         <thead>
           <tr>
@@ -19,7 +19,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let item of disasterData | select: sel">
+          <tr *ngFor="let item of disasterData[0] | select: sel">
             <td>{{item.CaseTime}}</td>
             <td>
               <span class="badge badge-primary">{{item.CaseLocationDistrict}}</span>
@@ -39,16 +39,9 @@
         <li>iconUrl {{item.iconUrl}}</li>
       </ul> -->
 
-      <agm-map
-        [latitude]="lat"
-        [longitude]="lng"
-        [zoom]="zoomValue">
+      <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoomValue">
         <!-- [iconUrl]="m.iconUrl" -->
-        <agm-marker
-            *ngFor="let m of markers"
-            [latitude]="m.lat"
-            [longitude]="m.lng"
-            >
+        <agm-marker *ngFor="let m of markers" [latitude]="m.lat" [longitude]="m.lng">
 
           <agm-info-window>
             <p>地區:{{m.label}}</p>
@@ -61,13 +54,7 @@
 
         </agm-marker>
 
-        <agm-circle
-            [latitude]="lat + 0.3"
-            [longitude]="lng"
-            [radius]="5000"
-            [fillColor]="'red'"
-            [circleDraggable]="true"
-            [editable]="true">
+        <agm-circle [latitude]="lat + 0.3" [longitude]="lng" [radius]="5000" [fillColor]="'red'" [circleDraggable]="true" [editable]="true">
         </agm-circle>
 
       </agm-map>
